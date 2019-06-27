@@ -9,12 +9,10 @@ import { HttpClientModule } from '@angular/common/http'; // http请求
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
-import { MyComponentComponent } from './my-component/my-component.component';
 
 registerLocaleData(zh);
 const COMPONENTS = [
   AppComponent,
-  MyComponentComponent
 ];
 const COMPONENTS_EXPORT = [
 

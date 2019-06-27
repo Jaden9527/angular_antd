@@ -1,12 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home.component';
+import { AdminComponent } from './admin/admin.component';
 
 const routes: Routes = [
     {
         path: '',
-        component: HomeComponent,
         data: { preload: true, title: "" },
+        children: [ // 子组件
+          {
+            path: 'admin', component: AdminComponent, data: {
+                title: '主页'
+            }
+        },
+        ]
     }
 ];
 
@@ -14,4 +20,4 @@ const routes: Routes = [
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
 })
-export class HomeRoutingModule { }
+export class AdminRoutingModule { }
