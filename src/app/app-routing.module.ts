@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { LayoutComponent } from './layout.component';
 
 const routes: Routes = [
   {
@@ -7,12 +8,18 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
-  {
-    path: 'home',
-    loadChildren: './home/home.module#HomeModule', //  延迟加载主模块
-    data: { preload: true, title: "" }
-  },
-  
+  { // 路由模块懒加载功能的具体应用  使用时才去加载对应的模块
+    path: '',
+    component: LayoutComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: './main/main.module#MainModule', //Lazy load main module
+        data: { preload: true }
+      },
+    ]
+  }
+
 ];
 
 @NgModule({

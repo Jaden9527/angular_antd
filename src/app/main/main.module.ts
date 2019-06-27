@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AdminComponent } from './admin/admin.component';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { ComponentModule } from '../commpage/commpage.module';
-import { AdminRoutingModule } from './admin-routing.module';
+import { MainRoutingModule } from './main-routing.module';
+import { HomeComponent } from './home/home.component';
 
 const COMPONENTS = [
-  AdminComponent
+  HomeComponent
 ];
 const COMPONENTS_EXPORT = [
 
@@ -15,7 +15,7 @@ const COMPONENTS_EXPORT = [
 @NgModule({
 imports: [
   CommonModule,
-  AdminRoutingModule,
+  MainRoutingModule,
   NgZorroAntdModule,
   ComponentModule
 ],
@@ -25,4 +25,4 @@ declarations: [
 providers:[],
 exports: COMPONENTS_EXPORT
 })
-export class AdminModule { }
+export class MainModule { }
