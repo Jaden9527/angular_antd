@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TemplateRef, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-layout',
@@ -7,15 +8,21 @@ import { TemplateRef, ViewChild } from '@angular/core';
   styleUrls: ['./layout.component.css']
 })
 export class LayoutComponent implements OnInit {
+
+  @ViewChild('trigger') customTrigger: TemplateRef<void>;
+
+  constructor(
+    private routerParams: ActivatedRoute
+  ) { }
+
   isCollapsed = false;
   triggerTemplate: TemplateRef<void> | null = null;
-  @ViewChild('trigger') customTrigger: TemplateRef<void>;
+
+  ngOnInit() {
+    console.log('router', this.routerParams)
+  }
+
   changeTrigger(): void {
     this.triggerTemplate = this.customTrigger;
   }
-  constructor() { }
-
-  ngOnInit() {
-  }
-
 }
