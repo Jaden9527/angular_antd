@@ -7,11 +7,13 @@ import zh from '@angular/common/locales/zh';
 registerLocaleData(zh);
 // 公用组件
 import { CellComponent } from './cell/cell.component';
+import { UploadComponent } from './upload/upload.component';
 const COMPONENTS = [
 
 ];
 const COMPONENTS_EXPORT = [
-  CellComponent
+  CellComponent,
+  UploadComponent
 ];
 
 @NgModule({

@@ -1,0 +1,19 @@
+.file-input {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 80px;
+    height: 40px;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.select-button {
+    position: absolute;
+    background-color: #007BFF;
+    color: #fff;
+    border-radius: 5px;
+    border: 1px solid transparent;
+    padding: .45rem 1.15rem;
+    font-size: 1rem;
+    line-height: 1.25;
+}
