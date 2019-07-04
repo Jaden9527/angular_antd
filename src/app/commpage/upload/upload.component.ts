@@ -25,6 +25,11 @@ export class UploadComponent implements OnInit {
   ngOnInit() {
   }
 
+  /** 选择文件 */
+  chooseFile() {
+    document.getElementById('selectFile').click();
+  }
+
   /** 上传文件 */
   uploadFn(form) {
     let self = this;
@@ -37,7 +42,7 @@ export class UploadComponent implements OnInit {
           // 服务端接收完文件返回的结果
           let res = JSON.parse(evt.target.responseText).result[0];
           resolve(res);
-        } else if (evt.target.status === 500) {
+        } else {
           reject(evt);
         }
       }; // 请求完成
