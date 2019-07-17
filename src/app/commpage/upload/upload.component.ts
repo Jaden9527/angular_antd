@@ -18,7 +18,8 @@ export class UploadComponent implements OnInit {
   @Input() title = '选择图片';
   @Input() multiple = ''; // 选择单个/多个文件 默认单个
   @Input() accept = 'image/*'; // 文件类型 默认只上传图片
-
+  @Input() id = 'upload1'; // 组件Id防止同一页面引用多个出现冲突
+  
   token = '';
   @Output('onChange') onChange = new EventEmitter<any>();
 
@@ -27,7 +28,8 @@ export class UploadComponent implements OnInit {
 
   /** 选择文件 */
   chooseFile() {
-    document.getElementById('selectFile').click();
+    let self = this;
+    document.getElementById(self.id).click();
   }
 
   /** 上传文件 */

@@ -1,4 +1,4 @@
-<div id="box2" class="">
+<div class="">
   <button class="select-button" (click)="chooseFile()">{{title}}</button>
-  <input class="file-input" type="file" id="selectFile" [(ngModel)]="file" (change)="uploadChange($event)" [accept]="accept" [multiple]="multiple"/>
+  <input class="file-input" type="file" [id]="id" [(ngModel)]="file" (change)="uploadChange($event)" [accept]="accept" [multiple]="multiple"/>
 </div>
