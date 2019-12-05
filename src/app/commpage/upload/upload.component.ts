@@ -19,7 +19,7 @@ export class UploadComponent implements OnInit {
   @Input() multiple = ''; // 选择单个/多个文件 默认单个
   @Input() accept = 'image/*'; // 文件类型 默认只上传图片
   @Input() id = 'upload1'; // 组件Id防止同一页面引用多个出现冲突
-  
+
   token = '';
   @Output('onChange') onChange = new EventEmitter<any>();
 
@@ -60,17 +60,18 @@ export class UploadComponent implements OnInit {
   /** 选择上传文件 */
   uploadChange(e) {
     let self = this;
-    /** 判断上传的文件是否为多个 */
-    if (e.target.files.length == 1) {
-      const file = e.target.files[0];
-      /** 判断是否为图片，是否需要压缩 */
+    let list = [];
+    for (let i = 0; i < e.target.files.length; i++) {
+      const file = e.target.files[i];
+
       if (file.type.indexOf('image') > -1) {
         self.compress(file).then(from => {
           self.uploadFn(from).then(res => {
-            let list = [];
             list.push(res);
-            self.onChange.emit(list);
-            self.file = null;
+            if (list.length == e.target.files.length) {
+              self.onChange.emit(list);
+              self.file = null;
+            }
           }).catch(err => {
             console.log('上传失败');
             self.file = null;
@@ -80,48 +81,15 @@ export class UploadComponent implements OnInit {
         const form = new FormData();
         form.append('files', file);
         self.uploadFn(form).then(res => {
-          let list = [];
           list.push(res);
-          self.onChange.emit(list);
-          self.file = null;
+          if (list.length == e.target.files.length) {
+            self.onChange.emit(list);
+            self.file = null;
+          }
         }).catch(err => {
           console.log('上传失败');
           self.file = null;
         });
-      }
-
-    } else if (e.target.files.length > 1) {
-      let list = [];
-      for (let i = 0; i < e.target.files.length; i++) {
-        const file = e.target.files[i];
-
-        if (file.type.indexOf('image') > -1) {
-          self.compress(file).then(from => {
-            self.uploadFn(from).then(res => {
-              list.push(res);
-              if (i == e.target.files.length - 1) {
-                self.onChange.emit(list);
-                self.file = null;
-              }
-            }).catch(err => {
-              console.log('上传失败');
-              self.file = null;
-            });
-          })
-        } else {
-          const form = new FormData();
-          form.append('files', file);
-          self.uploadFn(form).then(res => {
-            list.push(res);
-            if (i == e.target.files.length - 1) {
-              self.onChange.emit(list);
-              self.file = null;
-            }
-          }).catch(err => {
-            console.log('上传失败');
-            self.file = null;
-          });
-        }
       }
     }
   }
